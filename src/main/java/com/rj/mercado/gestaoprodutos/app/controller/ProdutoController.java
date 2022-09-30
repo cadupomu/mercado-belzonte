@@ -1,4 +1,4 @@
-package com.rj.mercado.gestaoprodutos.controller;
+package com.rj.mercado.gestaoprodutos.app.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.rj.mercado.gestaoprodutos.domain.model.Produto;
@@ -54,16 +54,11 @@ public class ProdutoController {
         return new ResponseEntity<>(NO_CONTENT);
     }
 
-    @PatchMapping(value = "/produto/{id}/{tipo}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Atualiza um produto", responses = {@ApiResponse(description = "Sucesso ao atualizar", responseCode = "201", content = @Content)})
-    ResponseEntity<Produto> updateTipo(@PathVariable UUID id, @PathVariable String tipo) {
-        try {
-        Produto produto = produtoService.findById(id);
-        produto.setTipo(tipo);
-        return new ResponseEntity<Produto>(produtoService.save(produto), HttpStatus.OK);
-    } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @PatchMapping(value = "/produto")
+    @Operation(summary = "atualiza um produto", responses = {@ApiResponse(description = "Sucesso ao atualizar", responseCode = "204")})
+    ResponseEntity<?> updateEmail(@RequestParam UUID id, @RequestParam String tipo) {
+        produtoService.update(id, tipo);
+        return new ResponseEntity<>(NO_CONTENT);
     }
 
     @DeleteMapping(value = "/produto/{id}")

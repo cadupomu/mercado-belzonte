@@ -30,4 +30,12 @@ public class ProdutoService {
     public void deleteById(UUID id) {
         produtoRepository.deleteById(id);
     }
+
+    public void update(UUID id, String tipo) {
+        produtoRepository.updateTipo(id, tipo);
+    }
+
+    public Produto findByTipo(String tipo) {
+        return produtoRepository.findByTipo(tipo);
+    }
 }
