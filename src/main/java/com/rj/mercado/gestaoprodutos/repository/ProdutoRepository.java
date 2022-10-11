@@ -13,7 +13,7 @@ import java.util.UUID;
 public interface ProdutoRepository extends JpaRepository<Produto, UUID> {
     @Modifying
     @Transactional
-    @Query(value = "update Tipo f set f.tipo = :tipo where f.produtoId = :id")
+    @Query(value = "update Produto t set t.tipo = :tipo where t.produtoId = :id")
     void updateTipo(UUID id, String tipo);
 
     Produto findByTipo(String tipo);

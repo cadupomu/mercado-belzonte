@@ -1,19 +1,15 @@
 package com.rj.mercado.gestaoprodutos.app.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.rj.mercado.gestaoprodutos.domain.model.Produto;
 import com.rj.mercado.gestaoprodutos.service.ProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,7 +52,7 @@ public class ProdutoController {
 
     @PatchMapping(value = "/produto")
     @Operation(summary = "atualiza um produto", responses = {@ApiResponse(description = "Sucesso ao atualizar", responseCode = "204")})
-    ResponseEntity<?> updateEmail(@RequestParam UUID id, @RequestParam String tipo) {
+    ResponseEntity<?> updateTipo(@RequestParam UUID id, @RequestParam String tipo) {
         produtoService.update(id, tipo);
         return new ResponseEntity<>(NO_CONTENT);
     }
